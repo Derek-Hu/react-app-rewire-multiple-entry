@@ -16,12 +16,13 @@
   },
   "keywords": [
     "reacte",
-    "create-react-appe",
-    "react-app-rewiree",
+    "create-react-app",
+    "react-app-rewire",
     "rewire",
     "multi",
     "multiple",
-    "entry"
+    "entry",
+    "webpack"
   ],
   "author": "benlv <992110146@qq.com>",
   "license": "MIT",
