@@ -73,11 +73,11 @@ module.exports = function (params) {
       // Mulitple Entry JS
       const defaultEntryPath = 'src/index.js';
       const defaulEntryName = formatName(defaultEntryPath);
-      const defaultEntryHTMLPlugin = config.plugins.filter(
-        plugin => plugin.constructor.name === 'HtmlWebpackPlugin'
-      )[0];
+      const defaultEntryHTMLPlugin = config.plugins.filter(function(plugin){
+        return plugin.constructor.name === 'HtmlWebpackPlugin'
+      })[0];
       defaultEntryHTMLPlugin.options.chunks = [defaulEntryName];
-      const necessaryEntry = config.entry.filter(file => {
+      const necessaryEntry = config.entry.filter(function(file){
         return file !== appIndexJs;
       });
 
