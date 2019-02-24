@@ -3,9 +3,11 @@
 const path = require('path');
 const pwd = process.cwd();
 const XXH = require('xxhashjs');
-const paths = require('react-app-rewired/scripts/utils/paths.js');
 
-var H = XXH.h32(0xABCD) // seed = 0xABCD
+const H = XXH.h32(0xABCD) // seed = 0xABCD
+
+const appIndexJs = path.resolve(pwd, 'src/index.js');
+const appHtml = path.resolve(pwd, 'public/index.html');
 
 const formatName = function (name) {
   return name.split('/').reverse()[0].match(/^[^.]*/)[0] + '.' + H.update(name).digest().toString(16);
@@ -18,7 +20,7 @@ module.exports = function (params) {
       throw new Error('Expect attribute [entry] used for entry JS file!');
     }
     if (!entry.template) {
-      entry.template = paths.appHtml;
+      entry.template = appHtml;
     } else {
       entry.template = path.resolve(pwd, entry.template);
     }
@@ -67,7 +69,7 @@ module.exports = function (params) {
       )[0];
       defaultEntryHTMLPlugin.options.chunks = [defaulEntryName];
       const necessaryEntry = config.entry.filter(file => {
-        return file !== paths.appIndexJs;
+        return file !== appIndexJs;
       });
 
       const multipleEntry = {};
