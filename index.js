@@ -1,6 +1,5 @@
 'use strict';
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const pwd = process.cwd();
 const XXH = require('xxhashjs');
@@ -78,7 +77,7 @@ module.exports = function (params) {
         multipleEntry[_entry.name] = necessaryEntry.concat(_entry.entry);
         // Multiple Entry HTML Plugin
         config.plugins.push(
-          new HtmlWebpackPlugin(
+          new defaultEntryHTMLPlugin.constructor(
             Object.assign({}, defaultEntryHTMLPlugin.options, {
               filename: _entry.outPath,
               template: _entry.template,

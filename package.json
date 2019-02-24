@@ -54,7 +54,6 @@
     "prettier": "^1.16.4"
   },
   "peerDependencies": {
-    "html-webpack-plugin": "",
     "react-app-rewired": ""
   },
   "dependencies": {
