@@ -116,9 +116,9 @@ module.exports = {
 };
 ```
 
-# API
+## API
 
-## Options
+### Options
 
 You can pass a array of entry configuration options to `react-app-rewire-multiple-entry`, the entry in the array has attributes below:
 
@@ -126,7 +126,7 @@ You can pass a array of entry configuration options to `react-app-rewire-multipl
 - `template` [Optional] HTML template used in plugin [HtmlWebpackPlugin]. Default value: `public/index.html`.
 - `outPath`: [Optional] The file wirte the HTML to. You can specify a subdirectory. **If empty, it will be calculated by `path.relative(process.cwd(), template)`**
 
-## Method
+### Method
 
 - `addEntryProxy` Inject settings for multiple entry in webpack config
 - `addMultiEntry` Inject proxy settings used during development phase.
