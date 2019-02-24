@@ -137,6 +137,6 @@ That’s it! Now you can control mulitple entries, enjoy coding!
 
 [create react app]: https://github.com/facebook/create-react-app
 [react app rewire multiple entry]: https://github.com/Derek-Hu/react-app-rewire-multiple-entry
-[react app rewired]: https://github.com/timarney/react-app-rewired
 [customize-cra]: https://github.com/arackaf/customize-cra#readme
 [rewired]: https://github.com/timarney/react-app-rewired#how-to-rewire-your-create-react-app-project
+[htmlwebpackplugin]: https://github.com/jantimon/html-webpack-plugin
