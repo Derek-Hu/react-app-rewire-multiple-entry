@@ -15,9 +15,15 @@ const formatName = function (name) {
 
 module.exports = function (params) {
   // Prepare Data for Multiple Entry
-  const entries = params.map(function (entry) {
+  const isArray = Object.prototype.toString.call(params) === '[object Array]';
+
+  const validElements = params.filter(function(entry){
+    return entry && Object.keys(entry).length;
+  });
+
+  const entries = isArray && validElements && validElements.map(function (entry) {
     if (!entry.entry) {
-      throw new Error('Expect attribute [entry] used for entry JS file!');
+      throw new Error('Missing attribute [entry], Received  '+JSON.stringify(entry));
     }
     if (!entry.template) {
       entry.template = appHtml;
@@ -40,6 +46,9 @@ module.exports = function (params) {
 
   return {
     addEntryProxy: function (configFunction) {
+      if(!entries || !entries.length){
+        return configFunction;
+      }
       if (!configFunction.historyApiFallback) {
         configFunction.historyApiFallback = {};
       }
@@ -58,6 +67,9 @@ module.exports = function (params) {
       return configFunction;
     },
     addMultiEntry: function (config) {
+      if(!entries || !entries.length){
+        return config;
+      }
       // Mulitple Entry JS
       const defaultEntryPath = 'src/index.js';
       const defaulEntryName = formatName(defaultEntryPath);
