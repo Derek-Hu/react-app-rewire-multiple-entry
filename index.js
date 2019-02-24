@@ -26,10 +26,8 @@ module.exports = function (params) {
     }
     if (!entry.outPath) {
       entry.outPath = path.relative(pwd, entry.template).replace(/\\/g, '/')
-      console.log(entry.outPath)
     }
     entry.outPath = entry.outPath.replace(/^\//, '').replace(/\/$/, '');
-    console.log(entry.outPath)
     return {
       name: formatName(entry.entry),
       entry: path.resolve(pwd, entry.entry),
@@ -40,7 +38,6 @@ module.exports = function (params) {
     }
   });
 
-  console.log(entries)
   return {
     addEntryProxy: function (configFunction) {
       if (!configFunction.historyApiFallback) {
@@ -98,10 +95,6 @@ module.exports = function (params) {
         names[0] = '[name].' + names[0];
         config.output.filename = names.reverse().join('/');
       }
-      console.log(config.entry)
-      console.log(config.output)
-      console.log(config.plugins[0])
-      console.log(config.plugins[config.plugins.length - 1])
       return config;
     }
   }
