@@ -1,6 +1,6 @@
 {
   "name": "react-app-rewire-multiple-entry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Multiple Entry Support for Create-React-App",
   "main": "index.js",
   "scripts": {
