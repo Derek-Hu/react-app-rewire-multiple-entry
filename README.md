@@ -1,5 +1,5 @@
 [React App Rewire Multiple Entry] lets you configure multiple entries in [Create React App]
-v1 and v2 without ejecting.
+v1, v2 and v3 without ejecting.
 
 ## Usage
 
@@ -17,23 +17,20 @@ directory:
 ```js
 // config-overrides.js
 
-const multipleEntry = require('react-app-rewire-multiple-entry')([{
+const multipleEntry = require('react-app-rewire-multiple-entry')([
+  {
     entry: 'src/entry/landing.js',
-    template: 'public/landing.html'
+    template: 'public/landing.html',
     outPath: '/landing.html'
-}]);
+  }
+]);
 
 module.exports = {
-    webpack: function(config, env){
-        multipleEntry.addMultiEntry(config);
-        return config;
-    },
-    devServer: function(configFunction) {
-        multipleEntry.addEntryProxy(configFunction);
-        return configFunction;
-    }
-}
-
+  webpack: function(config, env) {
+    multipleEntry.addMultiEntry(config);
+    return config;
+  }
+};
 ```
 
 ### Work with [customize-cra]
@@ -41,28 +38,26 @@ module.exports = {
 ```js
 // config-overrides.js
 
-const multipleEntry = require('react-app-rewire-multiple-entry')([{
+const multipleEntry = require('react-app-rewire-multiple-entry')([
+  {
     entry: 'src/entry/landing.js',
-    template: 'public/landing.html'
+    template: 'public/landing.html',
     outPath: '/landing.html'
-}]);
+  }
+]);
 
 const {
   // addBundleVisualizer,
   override,
-  overrideDevServer,
+  overrideDevServer
 } = require('customize-cra');
 
 module.exports = {
   webpack: override(
-      multipleEntry.addMultiEntry,
-      // addBundleVisualizer()
-  ),
-  devServer: overrideDevServer(
-    multipleEntry.addEntryProxy
+    multipleEntry.addMultiEntry
+    // addBundleVisualizer()
   )
 };
-
 ```
 
 ### More Examples
@@ -108,10 +103,6 @@ module.exports = {
   webpack: function(config, env) {
     multipleEntry.addMultiEntry(config);
     return config;
-  },
-  devServer: function(configFunction) {
-    multipleEntry.addEntryProxy(configFunction);
-    return configFunction;
   }
 };
 ```
@@ -128,7 +119,6 @@ You can pass a array of entry configuration options to `react-app-rewire-multipl
 
 ### Method
 
-- `addEntryProxy` Inject settings for multiple entry in webpack config
 - `addMultiEntry` Inject proxy settings used during development phase.
 
 That’s it! Now you can control mulitple entries, enjoy coding!
