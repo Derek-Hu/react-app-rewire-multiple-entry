@@ -119,7 +119,7 @@ You can pass a array of entry configuration options to `react-app-rewire-multipl
 
 ### Method
 
-- `addMultiEntry` Inject proxy settings used during development phase.
+- `addMultiEntry` Inject settings for multiple entry in webpack config
 
 That’s it! Now you can control mulitple entries, enjoy coding!
 
