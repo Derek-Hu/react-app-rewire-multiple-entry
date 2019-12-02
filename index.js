@@ -8,7 +8,7 @@ const XXH = require('xxhashjs');
 const H = XXH.h32(0xABCD) // seed = 0xABCD
 
 const appIndexes = ['js', 'ts', 'jsx', 'tsx'].map(
-  ext => path.resolve(pwd, `src/index.${ext}`
+  ext => path.resolve(pwd, `src/index.${ext}`)
 );
 const appHtml = path.resolve(pwd, 'public/index.html');
 
