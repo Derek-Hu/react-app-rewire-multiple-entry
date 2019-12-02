@@ -7,7 +7,9 @@ const XXH = require('xxhashjs');
 
 const H = XXH.h32(0xABCD) // seed = 0xABCD
 
-const appIndexJs = path.resolve(pwd, 'src/index.js');
+const appIndexes = ['js', 'ts', 'jsx', 'tsx'].map(
+  ext => path.resolve(pwd, `src/index.${ext}`
+);
 const appHtml = path.resolve(pwd, 'public/index.html');
 
 const formatName = function (name) {
@@ -43,7 +45,7 @@ module.exports = function (params) {
       entry.outPath = path.relative(pwd, entry.template).replace(/\\/g, '/')
     }
     entry.outPath = entry.outPath.replace(/^\//, '').replace(/\/$/, '');
-    
+
     checkFileExist(entry.template);
     const entryPath = path.resolve(pwd, entry.entry);
 
@@ -58,21 +60,19 @@ module.exports = function (params) {
       pattern: new RegExp('^' + entry.outPath.replace(/[-/\\^$&*+?.()|[\]{}]/g, '\\$&')),
     }
   });
-
   return {
     addMultiEntry: function (config) {
       if(!entries || !entries.length){
         return config;
       }
-      // Mulitple Entry JS
+      // Multiple Entry JS
       const defaultEntryHTMLPlugin = config.plugins.filter(function(plugin){
         return plugin.constructor.name === 'HtmlWebpackPlugin'
       })[0];
       defaultEntryHTMLPlugin.options.chunks = [defaultEntryName];
       const necessaryEntry = config.entry.filter(function(file){
-        return file !== appIndexJs;
+        return !appIndexes.includes(file);
       });
-      
       const multipleEntry = {};
       multipleEntry[defaultEntryName] = config.entry;
 
@@ -89,13 +89,12 @@ module.exports = function (params) {
           )
         );
       });
-
       config.entry = multipleEntry;
 
-      
+
       // Multiple Entry Output File
       let names = config.output.filename.split('/').reverse();
-      
+
       if (names[0].indexOf('[name]') === -1) {
         names[0] = '[name].' + names[0];
         config.output.filename = names.reverse().join('/');
