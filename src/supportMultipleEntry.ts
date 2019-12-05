@@ -19,7 +19,7 @@ export default function(entries:EntryWebpack[] | null) {
     })[0];
     defaultEntryHTMLPlugin.options.chunks = [defaultEntryName];
     const necessaryEntry = config.entry.filter(function(file:string) {
-      return appIndexes.indexOf(file)!==-1;
+      return !appIndexes.includes(file);
     });
     const multipleEntry:EntryMap = {};
     multipleEntry[defaultEntryName] = config.entry;
