@@ -18,7 +18,8 @@ export default function(entries:EntryWebpack[] | null) {
       return plugin.constructor.name === 'HtmlWebpackPlugin';
     })[0];
     defaultEntryHTMLPlugin.options.chunks = [defaultEntryName];
-    const necessaryEntry = config.entry.filter(function(file:string) {
+    // If there is only one entry file then it should not be necessary for the rest of the entries
+    const necessaryEntry = config.entry.length === 1 ? [] : config.entry.filter(function(file:string) {
       return !appIndexes.includes(file);
     });
     const multipleEntry:EntryMap = {};
