@@ -1,16 +1,36 @@
 [React App Rewire Multiple Entry] lets you configure multiple entries in [Create React App]
-v1, v2 and v3 without ejecting.
+without ejecting.
 
 ## Usage
 
-Add [React App Rewire Multiple Entry] to your [Rewired] React app:
+1. Add [React App Rewire Multiple Entry] to your [Rewired] React app:
 
 ```bash
-npm install react-app-rewire-multiple-entry --save-dev
+npm install --save-dev react-app-rewired react-app-rewire-multiple-entry
 ```
 
-Next, add [React App Rewire Multiple Entry] to `config-overrides.js` in your React app
-directory:
+##### For create-react-app 1.x or react-scripts-ts with Webpack 3:
+
+```bash
+$ npm install --save-dev react-app-rewired@1.6.2
+```
+
+2. Modify `package.json`
+
+```diff
+  "scripts": {
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+}
+```
+
+3. Add [React App Rewire Multiple Entry] to `config-overrides.js` in your React app
+   directory:
 
 ### Basic Usage
 
