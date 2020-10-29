@@ -18,6 +18,12 @@ export default function(entries:EntryWebpack[] | null) {
       return plugin.constructor.name === 'HtmlWebpackPlugin';
     })[0];
     defaultEntryHTMLPlugin.options.chunks = [defaultEntryName];
+
+    // config.entry is not an array in Create React App 4
+    if (!Array.isArray(config.entry)) {
+      config.entry = [config.entry];
+    }
+
     // If there is only one entry file then it should not be necessary for the rest of the entries
     const necessaryEntry = config.entry.length === 1 ? [] : config.entry.filter(function(file:string) {
       return !appIndexes.includes(file);
