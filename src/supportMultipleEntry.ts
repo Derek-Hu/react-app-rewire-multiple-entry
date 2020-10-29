@@ -19,6 +19,7 @@ export default function (entries: EntryWebpack[] | null) {
     })[0];
     defaultEntryHTMLPlugin.options.chunks = [defaultEntryName];
 
+    // config.entry is not an array in Create React App 4
     if (!Array.isArray(config.entry)) {
       config.entry = [config.entry];
     }
