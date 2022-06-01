@@ -2,7 +2,8 @@
 export interface EntryParam {
   entry: string,
   template?: string,
-  outPath?: string
+  outPath?: string,
+  omitHash?: boolean
 }
 
 export interface EntryWebpack {
